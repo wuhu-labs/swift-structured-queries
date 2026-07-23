@@ -1,4 +1,8 @@
-public import Foundation
+#if canImport(FoundationEssentials)
+  public import FoundationEssentials
+#else
+  public import Foundation
+#endif
 
 /// A type that enumerates the values that can be bound to the parameters of a SQL statement.
 public enum QueryBinding: Hashable, Sendable {

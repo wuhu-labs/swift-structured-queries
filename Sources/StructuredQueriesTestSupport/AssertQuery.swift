@@ -1,5 +1,9 @@
 import CustomDump
-import Foundation
+#if canImport(FoundationEssentials)
+  import FoundationEssentials
+#else
+  import Foundation
+#endif
 import InlineSnapshotTesting
 public import StructuredQueriesCore
 
