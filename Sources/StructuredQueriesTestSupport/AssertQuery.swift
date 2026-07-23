@@ -119,8 +119,15 @@ public func assertQuery<each V: QueryRepresentable, S: Statement<(repeat each V)
       )
     }
   } catch {
+    // `Error.localizedDescription` is a full-Foundation extension, absent from
+    // FoundationEssentials; fall back to the error's textual description there.
+    #if canImport(FoundationEssentials)
+      let errorDescription = "\(error)"
+    #else
+      let errorDescription = error.localizedDescription
+    #endif
     assertInlineSnapshot(
-      of: error.localizedDescription,
+      of: errorDescription,
       as: .lines,
       message: "Results did not match",
       syntaxDescriptor: InlineSnapshotSyntaxDescriptor(

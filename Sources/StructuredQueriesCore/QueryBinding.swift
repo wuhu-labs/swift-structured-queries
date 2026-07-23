@@ -78,7 +78,13 @@ extension QueryBinding: CustomDebugStringConvertible {
     case .uuid(let uuid):
       return uuid.uuidString.lowercased().quoted(.text)
     case .invalid(let error):
-      return "<invalid: \(error.underlyingError.localizedDescription)>"
+      // `Error.localizedDescription` is a full-Foundation extension, absent from
+      // FoundationEssentials; fall back to the error's textual description there.
+      #if canImport(FoundationEssentials)
+        return "<invalid: \(error.underlyingError)>"
+      #else
+        return "<invalid: \(error.underlyingError.localizedDescription)>"
+      #endif
     }
   }
 }
