@@ -1,4 +1,8 @@
-package import Foundation
+#if canImport(FoundationEssentials)
+  package import FoundationEssentials
+#else
+  package import Foundation
+#endif
 
 package let jsonDecoder: JSONDecoder = {
   var decoder = JSONDecoder()

@@ -1,4 +1,8 @@
-public import Foundation
+#if canImport(FoundationEssentials)
+  public import FoundationEssentials
+#else
+  public import Foundation
+#endif
 
 /// A type that can decode itself from a query.
 public protocol QueryDecodable: _OptionalPromotable, _SendableMetatype {

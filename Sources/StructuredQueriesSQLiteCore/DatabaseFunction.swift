@@ -1,4 +1,8 @@
-public import Foundation
+#if canImport(FoundationEssentials)
+  public import FoundationEssentials
+#else
+  public import Foundation
+#endif
 public import StructuredQueriesCore
 
 /// A type representing a database function.

@@ -1,4 +1,8 @@
-public import Foundation
+#if canImport(FoundationEssentials)
+  public import FoundationEssentials
+#else
+  public import Foundation
+#endif
 
 /// A type that enumerates the values that can be bound to the parameters of a SQL statement.
 public enum QueryBinding: Hashable, Sendable {
@@ -74,7 +78,11 @@ extension QueryBinding: CustomDebugStringConvertible {
     case .uuid(let uuid):
       return uuid.uuidString.lowercased().quoted(.text)
     case .invalid(let error):
-      return "<invalid: \(error.underlyingError.localizedDescription)>"
+      #if canImport(FoundationEssentials)
+        return "<invalid: \(error.underlyingError)>"
+      #else
+        return "<invalid: \(error.underlyingError.localizedDescription)>"
+      #endif
     }
   }
 }

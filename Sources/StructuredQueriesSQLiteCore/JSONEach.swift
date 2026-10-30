@@ -1,4 +1,8 @@
-import Foundation
+#if canImport(FoundationEssentials)
+  import FoundationEssentials
+#else
+  import Foundation
+#endif
 public import StructuredQueriesCore
 
 extension QueryExpression where QueryValue: _AnyJSONRepresentable & _JSONArrayRepresentation {

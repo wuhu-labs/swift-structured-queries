@@ -1,4 +1,8 @@
-import Foundation
+#if canImport(FoundationEssentials)
+  import FoundationEssentials
+#else
+  import Foundation
+#endif
 
 public struct _CodableJSONRepresentation<QueryOutput: Codable>: Codable, QueryRepresentable {
   public var queryOutput: QueryOutput
